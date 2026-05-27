@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Digital Clock</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        flex-direction: column;
+        font-family: Arial;
+        height: 100vh;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 250px;
+        background: black;
+        color: white;
+        padding-top: 10px;
+        border: 3px solid cyan;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      #color {
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      #clock {
+        transition: 0.3s;
+        color: cyan;
+        font-weight: bold;
+        font-family: monospace;
+
+        text-shadow:
+        0 0 25px,
+        0 0 50px,
+        0 0 100px;
+
+        font-size: 35px;
+      }
+
+      .date {
+        color: lime;
+        font-weight: bold;
+        font-family: monospace;
+      }
+
+      h1, p {
+        margin: 0;
+        padding: 15px;
+      }
+
+      .date {
+        font-size: 25px;
+        font-weight: bold;
+        font-family: monospace;
+      }
+      #zone {
+        font-size: 25px;
+        font-weight: bold;
+        font-family: Arial;
+        color: lime;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <h1>Digital Clock</h1>
+
+      <p id="clock"></p>
+      <p class="date"></p>
+      <p id="zone"></p>
+    </div>
+
+    <script>
+      const clock = document.getElementById("clock");
+      const dates = document.querySelector(".date");
+      const zone = document.getElementById("zone");
+      function updateTime() {
+        let now = new Date();
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const time = now.toLocaleTimeString([], {
+          timeZone: userTimeZone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true
+        });
+        const date = now.toLocaleDateString();
+        clock.textContent = time;
+        dates.textContent = date;
+        zone.textContent = userTimeZone;
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>

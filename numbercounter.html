@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Number Counter</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+        font-size: 20px;
+      }
+
+      .container {
+        padding: 50px;
+        border: 5px solid black;
+        background: white;
+        border-radius: 20px;
+      }
+
+      .btn-plus {
+        background: lime;
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.3s;
+      }
+
+      .btn-reset {
+        background: lightgray;
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.3s;
+      }
+
+      .btn-min {
+        background: red;
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Number Counter</h2>
+      <h1 id="number">0</h1>
+
+      <button class="btn-min" onclick="min()">Min</button>
+      <button class="btn-reset" onclick="reset()">Reset</button>
+      <button class="btn-plus" onclick="plus()">Plus</button>
+    </div>
+
+    <script>
+      let number = document.getElementById("number");
+      let count = 0;
+
+      function plus() {
+        count++;
+        number.textContent = count;
+        updateColor();
+      }
+
+      function min() {
+        count--;
+        number.textContent = count;
+        updateColor();
+      }
+
+      function reset() {
+        count = 0;
+        number.textContent = count;
+        updateColor();
+      }
+
+      function updateColor() {
+        if (count > 0) {
+          number.style.color = "green";
+        }
+        else if (count < 0) {
+          number.style.color = "red";
+        }
+        else if (count === 0) {
+          number.style.color = "black";
+        }
+      }
+    </script>
+  </body>
+</html>
